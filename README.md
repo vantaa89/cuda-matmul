@@ -12,7 +12,7 @@ This repository implements six matrix multiplication kernels, with incremental o
 ## Usage
 1. Clone the repository to your local machine.
    ```
-   git clone --depth=1 https://github.com/vantaa89/cuda-matmul/`
+   git clone --depth=1 https://github.com/vantaa89/cuda-matmul/
    ```
 1. Build the code using `make`.
 1. Run the program with `./main [-k kernel_num] M N K`. For example, `./main -k 5 4096 4096 4096` performs the matrix multiplication using kernel 5(tensor core + warp tiling) with matrix size $M=N=K=4096$.
