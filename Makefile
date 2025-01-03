@@ -2,7 +2,7 @@ TARGET=main
 OBJECTS=main.o matmul.o utils.o
 
 CPPFLAGS=-std=c++17 -O3 -Wall -march=native -mavx2 -mfma -fopenmp -mno-avx512f -I/usr/local/cuda/include
-CUDA_CFLAGS:=$(foreach option, $(CPPFLAGS),-Xcompiler=$(option)) -arch=sm_70
+CUDA_CFLAGS:=$(foreach option, $(CPPFLAGS),-Xcompiler=$(option)) -arch=sm_86
 
 LDFLAGS=-pthread -L/usr/local/cuda/lib64
 LDLIBS=-lstdc++ -lcudart -lm

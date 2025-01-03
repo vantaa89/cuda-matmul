@@ -6,6 +6,18 @@
 
 using namespace nvcuda;
 
+#ifndef CHECK_CUDA
+#define CHECK_CUDA(call)                                                 \
+  do {                                                                   \
+    cudaError_t status_ = call;                                          \
+    if (status_ != cudaSuccess) {                                        \
+      fprintf(stderr, "CUDA error (%s:%d): %s:%s\n", __FILE__, __LINE__, \
+              cudaGetErrorName(status_), cudaGetErrorString(status_));   \
+      exit(EXIT_FAILURE);                                                \
+    }                                                                    \
+  } while (0)
+#endif
+
 int num_kernels = 6;
 int fp16[6] = {0, 0, 0, 0, 1, 1};
 
@@ -241,6 +253,7 @@ void matmul(float *A, float *B, float *C, int M, int N, int K, int kernel_num){
     start = clock();
     matmul_kernel_2d_thread_tiling<BLOCK_SIZE, THREAD_TILE_SIZE><<<gridDim, blockDim>>>(a_d, b_d, c_d, M, N, K);
   }
+  CHECK_CUDA(cudaGetLastError());
 
   cudaDeviceSynchronize();  // wait until the device finishes kernel execution
 
@@ -281,6 +294,7 @@ void matmul(half *A, half *B, float *C, int M, int N, int K, int kernel_num){
     matmul_tc_2d_warp_tiling<WARP_TILE_SIZE1, WARP_TILE_SIZE2><<<gridDim, blockDim>>>(a_d, b_d, c_d, M, N, K);
   }
   
+  CHECK_CUDA(cudaGetLastError());
   cudaDeviceSynchronize();  // wait until the device finishes kernel execution
 
   end = clock();
