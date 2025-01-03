@@ -9,7 +9,7 @@ This repository implements six matrix multiplication kernels, with incremental o
 *	Kernel 4: Leverages **tensor cores** for computation.
 *	Kernel 5: Combines tensor cores with warp tiling for further optimization.
 
-The code was tested on NVIDIA GeForce RTX 3060 (CUDA Capability 8.6) with CUDA Driver 12.2
+The code was tested on NVIDIA GeForce RTX 3060 (CUDA Capability 8.6) with CUDA Driver 12.6
 
 ## Usage
 1. Clone the repository to your local machine.
