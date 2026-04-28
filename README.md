@@ -1,6 +1,6 @@
 # CUDA Matrix Multiplication Optimization
 
-This repository implements six matrix multiplication kernels, with incremental optimizations applied to each. A detailed explanation of each kernel is available [here (Korean)](https://seojune.site/post/cuda-matmul).
+This repository implements six matrix multiplication kernels, with incremental optimizations applied to each. A detailed explanation of each kernel is available [here](https://seojune.org/post/cuda-matmul).
 
 *	Kernel 0: A naive implementation.
 *	Kernel 1: Adds block tiling and shared memory.
